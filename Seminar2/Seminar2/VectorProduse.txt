@@ -1,0 +1,16 @@
+5
+8.9
+1
+Pepsi Max
+12.33
+2
+Chipsuri Lays
+5.99
+3
+Covridog
+11.9
+4
+Chilly Cheese Lidl
+50000000
+5
+Gumita

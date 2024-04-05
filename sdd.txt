@@ -1,0 +1,35 @@
+SEMINAR 1
+
+40% seminar
+20% un test dupa tabela de dispersie
+10% grila in ultima saptamana
+10% activitate -  nu e prag la seminar, primim teme 
+
+github.com/gabivas
+primele 3 sem recapitulare
+mail azi in care sa i zicem ca am fost la sem asta
+inainte de test o sa primim structura
+nu tine cont de prezente!! -pt andreea
+
+tabel ascii
+alocare dinamica
+
+
+variabilele alocate dinamic sunt in heap
+
+pe stiva lui main am adaugat pointer(adresa) sirului alocat dinamic
+
+sa nu uitam sa dezalocam valoarea de la heap pt a nu avea memory leaks
+
+de ex in main la adresa A1 avem sirul ABCDE (in heap)
+
+in C++ parametrii sunt transmisi prin valoare, prin referinta sau prin pointer
+
+in C avem doar prin valoare si prin pointer/adresa
+
+diferenta dintre cele 2:prin valoare sunt transmise niste copii care sunt sterse la finalul executiei functiei
+prin pointer avem valorile actualizate
+
+diferenta dintre metoda si functie
+metodele sunt def la nivelul fct, iar fct sunt globale
+in C avem doar functii
