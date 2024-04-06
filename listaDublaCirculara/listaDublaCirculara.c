@@ -177,6 +177,33 @@ void stergereDupaCriterii(LDI* lista, char* nume) {
 	}
 }
 
+void conversieLD_Vector(LDI lista, Produs** vectorProduse, int* nrProduse) {
+	if (lista.prim)
+	{
+		Nod* copie1 = lista.prim;
+		Nod* copie2 = lista.prim;
+		do
+		{
+			(*nrProduse)++;
+			copie2 = copie2->next;
+		} while (copie2 != lista.prim);
+		
+		*vectorProduse = (Produs*)malloc((*nrProduse) * sizeof(Produs));
+		int i = 0;
+		do {
+			(*vectorProduse)[i] = copie1->info;
+			i++;
+			copie1 = copie1->next;
+		} while (copie1 != lista.prim);
+		
+	}
+	else
+	{
+		printf("\nLISTA E GOALA");
+	}
+	
+}
+
 void main() {
 	LDI listaDubla;
 	listaDubla.prim = listaDubla.ultim = NULL;
@@ -194,6 +221,17 @@ void main() {
 	inserareLaSfarsit(&listaDubla, initProdus("ciocolata5", 44.16f, 83));
 	inserareLaSfarsit(&listaDubla, initProdus("ciocolata5", 44.63f, 82));
 	inserareLaSfarsit(&listaDubla, initProdus("ciocolata6", 44.64f, 18));
+
+	//conversie la vector
+	Produs* vector = NULL;
+	int nr = 0;
+	conversieLD_Vector(listaDubla, &vector, &nr);
+	printf("\n AFISARE VECTOR");
+	for (int i = 0; i < nr; i++)
+	{
+		afisareProdus(vector[i]);
+	}
+	free(vector);
 
 	//o facem circulara
 	listaDubla.prim->prev = listaDubla.ultim;

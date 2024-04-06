@@ -7,6 +7,9 @@
 
 typedef struct Produs Produs;
 typedef struct Nod Nod;
+typedef struct NodLD NodLD;
+typedef struct LDI LDI;
+
 struct Produs {
 	char* nume;
 	float pret;
@@ -16,6 +19,17 @@ struct Produs {
 struct Nod {
 	Produs info;
 	Nod* next;
+};
+
+struct NodLD {
+	Produs info;
+	NodLD* prev;
+	NodLD* next;
+};
+
+struct LDI {
+	NodLD* prim;
+	NodLD* ultim;
 };
 
 //afisare informatii produs
@@ -233,6 +247,33 @@ void inserareDupaCriteriiDreapta(Nod** cap, char* nume, Produs produs) {
 	}
 }
 
+void conversieLS_Vector(Nod* cap, Produs** vectorProduse, int* nrProduse) {
+	if (cap)
+	{
+		Nod* copieCap = cap;
+		while (cap)
+		{
+			(*nrProduse)++;
+			cap = cap->next;
+		}
+		*vectorProduse = (Produs*)malloc(*nrProduse * sizeof(Produs));
+		int i = 0;
+		while (copieCap)
+		{
+			(*vectorProduse)[i] = copieCap->info;
+			i++;
+			copieCap = copieCap->next;
+		}
+	}
+	else {
+		printf("\nE GOALA");
+	}
+}
+
+void conversieLS_LD() {
+
+}
+
 void main() {
 	Nod* cap = NULL;
 	FILE* fisier = fopen("produs3.txt", "r");
@@ -255,5 +296,17 @@ void main() {
 	parcurgereLista(cap);
 
 	fclose(fisier);
+
+	//conversie vector
+	Produs* vectorProduse = NULL;
+	int nrProduse = 0;
+	conversieLS_Vector(cap, &vectorProduse, &nrProduse);
+	printf("\n-------dupa converise la vector-----\n");
+	for (int i = 0; i < nrProduse; i++)
+	{
+		afisareProdus(vectorProduse[i]);
+	}
+	free(vectorProduse);
+
 	dezalocareLista(&cap);
 }
