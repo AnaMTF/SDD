@@ -140,6 +140,56 @@ void parcurgereLista(Nod* cap) {
 	}
 }
 
+void stergeUltimNod(Nod** cap) {
+	if ((*cap) && (*cap)->next) {
+		Nod* aux = *cap;
+		while (aux->next->next) {
+			aux = aux->next;
+		}
+		free(aux->next->info.nume);
+		free(aux->next);
+		aux->next = NULL;
+	}
+	else
+	{
+		free((*cap)->info.nume);
+		free((*cap));
+		*cap = NULL;
+			
+	}
+}
+
+float calculPretMediu(Nod* cap) {
+	float suma = 0;
+	int nr = 0;
+	while (cap) {
+		suma += cap->info.pret;
+		nr++;
+		cap = cap->next;
+	}
+	if (nr == 0)
+	{
+		return 0;
+	}
+	return suma / nr;
+}
+
+char* getNumeProdus(Nod* cap, int stoc) {
+	char* buffer[20]="";
+	char* numeProdus = NULL;
+	while (cap) {
+		if (stoc == cap->info.stoc) {
+			strcmp(buffer, cap->info.nume);
+		}
+		cap = cap->next;
+	}
+	if (strcmp(buffer, "") != 0) {
+		numeProdus = (char*)malloc(sizeof(char) * strlen(buffer) + 1);
+		strcpy(numeProdus, buffer);
+	}
+	return numeProdus;
+}
+
 //dezalocare lista
 void dezalocareLista(Nod** cap) {
 	while (*cap)
@@ -268,10 +318,6 @@ void conversieLS_Vector(Nod* cap, Produs** vectorProduse, int* nrProduse) {
 	else {
 		printf("\nE GOALA");
 	}
-}
-
-void conversieLS_LD() {
-
 }
 
 void main() {
