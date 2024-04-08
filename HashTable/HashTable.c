@@ -127,11 +127,13 @@ void traversareLS(Nod* cap) {
 }
 
 void traversareHT(HashTable ht) {
-	for (int i = 0; i < ht.nrElemente; i++)
-	{
-		if (ht.vector[i]) {
-			printf("\nPozitia: %d", i);
-			traversareLS(ht.vector[i]);
+	if (ht.nrElemente > 0) {
+		for (int i = 0; i < ht.nrElemente; i++)
+		{
+			if (ht.vector[i]) {
+				printf("\n~~~~~~~~~~Pozitia: %d~~~~~~~~~\n", i);
+				traversareLS(ht.vector[i]);
+			}
 		}
 	}
 }
@@ -171,16 +173,16 @@ void main() {
 	FILE* fisier = fopen("produse.txt", "r");
 	if (fisier)
 	{
-		while (feof(fisier))
+		while (!feof(fisier))
 		{
 			inserareHT(ht, initProdusFisier(fisier));
 		}
 	}
 	
 
-	inserareHT(ht, initProdTastatura());
-	inserareHT(ht, initProdTastatura());
-	inserareHT(ht, initProdTastatura());
+	//inserareHT(ht, initProdTastatura());
+	//inserareHT(ht, initProdTastatura());
+	//inserareHT(ht, initProdTastatura());
 
 	traversareHT(ht);
 
